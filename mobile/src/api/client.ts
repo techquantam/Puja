@@ -5,7 +5,7 @@ import { useAuthStore } from '../store/useAuthStore';
 // In Expo development, localhost is usually not reachable from the physical device or emulator directly.
 // Android Emulator uses 10.0.2.2. iOS Simulator can use localhost.
 // Replace with your local machine's IP (e.g., http://192.168.1.XX:5000/api) for testing on physical devices.
-const BASE_URL = 'http://10.218.138.21:5000/api';
+const BASE_URL = 'https://puja-7axb.onrender.com/api';
 
 export const apiClient = axios.create({
   baseURL: BASE_URL,
