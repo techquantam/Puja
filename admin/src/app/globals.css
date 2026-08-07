@@ -1,0 +1,146 @@
+:root {
+  --primary: #FF7F00;
+  --secondary: #D4AF37;
+  --light-orange: #FFE0B2;
+  --background: #FFFFFF;
+  --surface: #FFF9F2;
+  --text: #2C1B10;
+  --text-light: #7A6B5D;
+  --border: #EADBC8;
+  --error: #D32F2F;
+  --success: #388E3C;
+  --white: #FFFFFF;
+  --shadow: 0 4px 6px -1px rgba(44, 27, 16, 0.05), 0 2px 4px -1px rgba(44, 27, 16, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(44, 27, 16, 0.1), 0 4px 6px -2px rgba(44, 27, 16, 0.05);
+  --border-radius: 12px;
+  --border-radius-lg: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #FF8F1F;
+    --secondary: #E5C158;
+    --light-orange: #3D2D1D;
+    --background: #120C08;
+    --surface: #1E150F;
+    --text: #F5EDE6;
+    --text-light: #A8988A;
+    --border: #3D2C1E;
+    --white: #1C120B;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Common premium elements */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 127, 0, 0.05);
+}
+
+.input-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: var(--border-radius);
+  border: 1.5px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  border-color: var(--primary);
+}
+
+.input-error {
+  border-color: var(--error);
+}
+
+.error-text {
+  color: var(--error);
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 500;
+}
