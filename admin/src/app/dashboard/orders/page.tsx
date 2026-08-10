@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '@/lib/api';
 
 interface OrderItem {
   productId: {
@@ -60,7 +61,7 @@ export default function OrdersPage() {
         throw new Error('Not logged in or session expired.');
       }
 
-      const res = await fetch('http://localhost:5000/api/orders/admin/all', {
+      const res = await fetch(`${API_BASE_URL}/api/orders/admin/all`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -92,7 +93,7 @@ export default function OrdersPage() {
         throw new Error('Session expired. Please log in again.');
       }
 
-      const res = await fetch(`http://localhost:5000/api/orders/admin/${orderId}/status`, {
+      const res = await fetch(`${API_BASE_URL}/api/orders/admin/${orderId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

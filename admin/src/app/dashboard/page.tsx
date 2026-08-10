@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '@/lib/api';
 
 export default function DashboardPage() {
   const [stats, setStats] = useState({
@@ -20,9 +21,9 @@ export default function DashboardPage() {
 
         // Fetch categories, products, banners, and orders
         const [catRes, prodRes, banRes] = await Promise.all([
-          fetch('http://localhost:5000/api/categories'),
-          fetch('http://localhost:5000/api/products?all=true'),
-          fetch('http://localhost:5000/api/banners?all=true'),
+          fetch(`${API_BASE_URL}/api/categories`),
+          fetch(`${API_BASE_URL}/api/products?all=true`),
+          fetch(`${API_BASE_URL}/api/banners?all=true`),
         ]);
 
         const catData = await catRes.json();
@@ -35,7 +36,7 @@ export default function DashboardPage() {
 
         if (token) {
           try {
-            const ordersRes = await fetch('http://localhost:5000/api/orders/admin/all', {
+            const ordersRes = await fetch(`${API_BASE_URL}/api/orders/admin/all`, {
               headers: { Authorization: `Bearer ${token}` },
             });
             if (ordersRes.ok) {

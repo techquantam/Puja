@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '@/lib/api';
 
 interface ProductItem {
   _id: string;
@@ -50,7 +51,7 @@ export default function ProductsPage() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/products?all=true&limit=50');
+      const res = await fetch(`${API_BASE_URL}/api/products?all=true&limit=50`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Failed to load products');
       setProducts(data.data || []);
@@ -63,7 +64,7 @@ export default function ProductsPage() {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/categories?all=true');
+      const res = await fetch(`${API_BASE_URL}/api/categories?all=true`);
       const data = await res.json();
       if (res.ok) setCategories(data.data || []);
     } catch (err) {
@@ -142,8 +143,8 @@ export default function ProductsPage() {
     };
 
     const url = editId
-      ? `http://localhost:5000/api/products/${editId}`
-      : 'http://localhost:5000/api/products';
+      ? `${API_BASE_URL}/api/products/${editId}`
+      : `${API_BASE_URL}/api/products`;
     const method = editId ? 'PUT' : 'POST';
 
     try {
@@ -182,7 +183,7 @@ export default function ProductsPage() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/products/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -320,7 +321,7 @@ export default function ProductsPage() {
                       }
 
                       try {
-                        const res = await fetch('http://localhost:5000/api/upload', {
+                        const res = await fetch(`${API_BASE_URL}/api/upload`, {
                           method: 'POST',
                           headers: {
                             Authorization: `Bearer ${token}`,

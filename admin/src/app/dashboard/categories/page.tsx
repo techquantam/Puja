@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '@/lib/api';
 
 interface CategoryItem {
   _id: string;
@@ -27,7 +28,7 @@ export default function CategoriesPage() {
   const fetchCategories = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/categories?all=true');
+      const res = await fetch(`${API_BASE_URL}/api/categories?all=true`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Failed to load categories');
       setCategories(data.data || []);
@@ -73,8 +74,8 @@ export default function CategoriesPage() {
 
     const body = { name, description, image, isActive };
     const url = editId
-      ? `http://localhost:5000/api/categories/${editId}`
-      : 'http://localhost:5000/api/categories';
+      ? `${API_BASE_URL}/api/categories/${editId}`
+      : `${API_BASE_URL}/api/categories`;
     const method = editId ? 'PUT' : 'POST';
 
     try {
@@ -113,7 +114,7 @@ export default function CategoriesPage() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/categories/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/categories/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -235,7 +236,7 @@ export default function CategoriesPage() {
                       }
 
                       try {
-                        const res = await fetch('http://localhost:5000/api/upload', {
+                        const res = await fetch(`${API_BASE_URL}/api/upload`, {
                           method: 'POST',
                           headers: {
                             Authorization: `Bearer ${token}`,

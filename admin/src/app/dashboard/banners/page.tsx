@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '@/lib/api';
 
 interface BannerItem {
   _id: string;
@@ -29,7 +30,7 @@ export default function BannersPage() {
   const fetchBanners = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/banners?all=true');
+      const res = await fetch(`${API_BASE_URL}/api/banners?all=true`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Failed to load banners');
       setBanners(data.data || []);
@@ -77,8 +78,8 @@ export default function BannersPage() {
 
     const body = { title, image, link, position: Number(position), isActive };
     const url = editId
-      ? `http://localhost:5000/api/banners/${editId}`
-      : 'http://localhost:5000/api/banners';
+      ? `${API_BASE_URL}/api/banners/${editId}`
+      : `${API_BASE_URL}/api/banners`;
     const method = editId ? 'PUT' : 'POST';
 
     try {
@@ -117,7 +118,7 @@ export default function BannersPage() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/banners/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/banners/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -239,7 +240,7 @@ export default function BannersPage() {
                       }
 
                       try {
-                        const res = await fetch('http://localhost:5000/api/upload', {
+                        const res = await fetch(`${API_BASE_URL}/api/upload`, {
                           method: 'POST',
                           headers: {
                             Authorization: `Bearer ${token}`,
