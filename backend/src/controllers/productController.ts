@@ -211,9 +211,17 @@ export const updateProduct = async (
       }
     }
 
+    // Validate discountPrice < price manually
+    // (Mongoose `this` context is unreliable with findByIdAndUpdate + runValidators)
+    const finalPrice = updateData.price !== undefined ? Number(updateData.price) : product.price;
+    if (updateData.discountPrice !== undefined && updateData.discountPrice !== null) {
+      if (Number(updateData.discountPrice) >= finalPrice) {
+        throw new AppError('Discount price must be strictly lower than original price.', 400);
+      }
+    }
+
     const updatedProduct = await Product.findByIdAndUpdate(id, updateData, {
       new: true,
-      runValidators: true,
     }).populate('category', 'name image');
 
     res.status(200).json({

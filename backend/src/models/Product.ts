@@ -71,12 +71,7 @@ const productSchema = new Schema<IProduct>(
     },
     discountPrice: {
       type: Number,
-      validate: {
-        validator: function (this: IProduct, value: number) {
-          return !value || value < this.price;
-        },
-        message: 'Discount price must be lower than original price',
-      },
+      min: [0, 'Discount price cannot be negative'],
     },
     images: {
       type: [String],

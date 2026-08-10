@@ -78,6 +78,8 @@ export default function ProductsPage() {
   }, []);
 
   const handleEditClick = (prod: ProductItem) => {
+    setError(null);
+    setSuccess(null);
     setEditId(prod._id);
     setName(prod.name);
     setDescription(prod.description);
@@ -95,6 +97,8 @@ export default function ProductsPage() {
   };
 
   const handleAddNewClick = () => {
+    setError(null);
+    setSuccess(null);
     setEditId(null);
     setName('');
     setDescription('');
@@ -116,9 +120,11 @@ export default function ProductsPage() {
     setError(null);
     setSuccess(null);
 
-    if (discountPrice && Number(discountPrice) >= Number(price)) {
-      setError('Discount price must be strictly lower than original price.');
-      return;
+    if (discountPrice !== undefined && discountPrice !== null) {
+      if (Number(discountPrice) >= Number(price)) {
+        setError('Discount price must be strictly lower than original price.');
+        return;
+      }
     }
 
     const token = localStorage.getItem('pujamart_admin_token');
