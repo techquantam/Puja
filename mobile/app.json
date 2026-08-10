@@ -18,8 +18,8 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.pujamart.anandmayibhakti",
-      "versionCode": 1,
+      "package": "com.anandmayi.poojabhandar",
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FF7F00"
@@ -29,7 +29,8 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-font"
     ],
     "extra": {
       "eas": {
