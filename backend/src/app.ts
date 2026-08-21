@@ -28,6 +28,9 @@ connectDB();
 app.use(helmet());
 app.use(cors());
 
+// Trust the reverse proxy (e.g., Render, Vercel, Nginx)
+app.set('trust proxy', 1);
+
 // Rate Limiter
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
